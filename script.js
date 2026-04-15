@@ -124,14 +124,31 @@ function updateActivePlayerCard() {
 function updateHud() {
   const movesPlayed = boardState.filter(Boolean).length;
 
-  scoreXElement.textContent = String(scores.X);
-  scoreOElement.textContent = String(scores.O);
-  scoreDrawElement.textContent = String(scores.draw);
-  moveCountElement.textContent = String(movesPlayed);
-  roundLabelElement.textContent = `Round ${roundNumber}`;
-  streakLabelElement.textContent = streak.count > 1 ? `${streak.player} x${streak.count}` : "None";
+  if (scoreXElement) {
+    scoreXElement.textContent = String(scores.X);
+  }
 
-  if (!gameOver && movesPlayed === 0) {
+  if (scoreOElement) {
+    scoreOElement.textContent = String(scores.O);
+  }
+
+  if (scoreDrawElement) {
+    scoreDrawElement.textContent = String(scores.draw);
+  }
+
+  if (moveCountElement) {
+    moveCountElement.textContent = String(movesPlayed);
+  }
+
+  if (roundLabelElement) {
+    roundLabelElement.textContent = `Round ${roundNumber}`;
+  }
+
+  if (streakLabelElement) {
+    streakLabelElement.textContent = streak.count > 1 ? `${streak.player} x${streak.count}` : "None";
+  }
+
+  if (turnLabelElement && !gameOver && movesPlayed === 0) {
     turnLabelElement.textContent = "Opening move";
   }
 }
@@ -154,7 +171,11 @@ function resetGame() {
   lastMoveIndex = null;
   roundNumber += 1;
   statusElement.textContent = "Player X's turn";
-  turnLabelElement.textContent = "Opening move";
+
+  if (turnLabelElement) {
+    turnLabelElement.textContent = "Opening move";
+  }
+
   createBoard();
 }
 

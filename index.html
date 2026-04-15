@@ -9,11 +9,11 @@
 <body>
   <main class="shell">
     <section class="game">
-      <div class="eyebrow">Board Game</div>
+      <div class="eyebrow">Strategy Board</div>
       <div class="heading">
         <div>
           <h1>Tic Tac Toe</h1>
-          <p class="subtitle">Hello World</p>
+          <p class="subtitle">A darker competitive interface with lightweight motion, round tracking, and live match feedback.</p>
         </div>
         <button class="reset" id="reset" type="button">New Game</button>
       </div>
@@ -21,16 +21,37 @@
       <div class="status-panel">
         <p class="status-label">Match Status</p>
         <p class="status" id="status">Player X's turn</p>
+        <div class="status-meta">
+          <span class="meta-pill" id="round-label">Round 1</span>
+          <span class="meta-pill" id="turn-label">Opening move</span>
+        </div>
       </div>
 
       <section class="scoreboard" aria-label="Player markers">
         <div class="score-card is-active" id="card-x">
           <span class="score-label">Player X</span>
           <span class="score-mark">X</span>
+          <span class="score-value" id="score-x">0</span>
         </div>
         <div class="score-card" id="card-o">
           <span class="score-label">Player O</span>
           <span class="score-mark">O</span>
+          <span class="score-value" id="score-o">0</span>
+        </div>
+      </section>
+
+      <section class="insights" aria-label="Game insights">
+        <div class="insight-card">
+          <span class="insight-label">Draws</span>
+          <span class="insight-value" id="score-draw">0</span>
+        </div>
+        <div class="insight-card">
+          <span class="insight-label">Moves</span>
+          <span class="insight-value" id="move-count">0</span>
+        </div>
+        <div class="insight-card">
+          <span class="insight-label">Streak</span>
+          <span class="insight-value" id="streak-label">None</span>
         </div>
       </section>
 
