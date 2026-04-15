@@ -45,20 +45,10 @@ function createBoard() {
     button.className = "cell";
     button.type = "button";
     button.dataset.index = index;
-    button.textContent = value;
     button.disabled = Boolean(value) || gameOver;
+    button.dataset.value = value;
 
-    if (value) {
-      button.classList.add(value.toLowerCase());
-    }
-
-    if (winningCells.includes(index)) {
-      button.classList.add("win");
-    }
-
-    if (lastMoveIndex === index) {
-      button.classList.add("last-move");
-    }
+    applyCellState(button, value, index, false);
 
     button.addEventListener("click", handleMove);
     boardElement.appendChild(button);
@@ -73,17 +63,39 @@ function updateBoard() {
 
   buttons.forEach((button, index) => {
     const value = boardState[index];
+    const previousValue = button.dataset.value || "";
+    const shouldAnimateMark = !previousValue && Boolean(value);
 
-    button.textContent = value;
     button.disabled = Boolean(value) || gameOver;
-    button.classList.toggle("x", value === "X");
-    button.classList.toggle("o", value === "O");
-    button.classList.toggle("win", winningCells.includes(index));
-    button.classList.toggle("last-move", lastMoveIndex === index);
+    button.dataset.value = value;
+    applyCellState(button, value, index, shouldAnimateMark);
   });
 
   updateActivePlayerCard();
   updateHud();
+}
+
+function applyCellState(button, value, index, shouldAnimateMark) {
+  button.classList.toggle("x", value === "X");
+  button.classList.toggle("o", value === "O");
+  button.classList.toggle("win", winningCells.includes(index));
+  button.classList.toggle("last-move", lastMoveIndex === index);
+
+  button.textContent = "";
+
+  if (!value) {
+    return;
+  }
+
+  const mark = document.createElement("span");
+  mark.className = "mark";
+  mark.textContent = value;
+
+  if (shouldAnimateMark) {
+    mark.classList.add("is-drawing");
+  }
+
+  button.appendChild(mark);
 }
 
 function handleMove(event) {
@@ -186,3 +198,7 @@ function resetGame() {
 
 resetButton.addEventListener("click", resetGame);
 createBoard();
+boardElement.classList.add("is-intro");
+window.setTimeout(() => {
+  boardElement.classList.remove("is-intro");
+}, 900);
