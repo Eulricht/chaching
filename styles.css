@@ -245,7 +245,6 @@ h1 {
   letter-spacing: -0.04em;
   cursor: pointer;
   transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
-  animation: cell-enter 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .cell:hover:not(:disabled) {
@@ -273,6 +272,7 @@ h1 {
   box-shadow:
     0 0 0 1px rgba(125, 211, 252, 0.16) inset,
     0 0 24px rgba(125, 211, 252, 0.14);
+  animation: move-flash 260ms ease-out;
 }
 
 .cell.win {
@@ -321,18 +321,6 @@ h1 {
   }
 }
 
-@keyframes cell-enter {
-  from {
-    opacity: 0;
-    transform: translateY(8px) scale(0.94);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
 @keyframes win-pulse {
   0%,
   100% {
@@ -341,6 +329,22 @@ h1 {
 
   50% {
     transform: scale(1.03);
+  }
+}
+
+@keyframes move-flash {
+  0% {
+    transform: scale(0.96);
+    box-shadow:
+      0 0 0 1px rgba(125, 211, 252, 0.3) inset,
+      0 0 0 rgba(125, 211, 252, 0);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 1px rgba(125, 211, 252, 0.16) inset,
+      0 0 24px rgba(125, 211, 252, 0.14);
   }
 }
 

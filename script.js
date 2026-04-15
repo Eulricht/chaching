@@ -9,7 +9,6 @@ const scoreDrawElement = document.getElementById("score-draw");
 const moveCountElement = document.getElementById("move-count");
 const streakLabelElement = document.getElementById("streak-label");
 const roundLabelElement = document.getElementById("round-label");
-const turnLabelElement = document.getElementById("turn-label");
 
 const winningLines = [
   [0, 1, 2],
@@ -69,6 +68,24 @@ function createBoard() {
   updateHud();
 }
 
+function updateBoard() {
+  const buttons = boardElement.querySelectorAll(".cell");
+
+  buttons.forEach((button, index) => {
+    const value = boardState[index];
+
+    button.textContent = value;
+    button.disabled = Boolean(value) || gameOver;
+    button.classList.toggle("x", value === "X");
+    button.classList.toggle("o", value === "O");
+    button.classList.toggle("win", winningCells.includes(index));
+    button.classList.toggle("last-move", lastMoveIndex === index);
+  });
+
+  updateActivePlayerCard();
+  updateHud();
+}
+
 function handleMove(event) {
   const index = Number(event.currentTarget.dataset.index);
 
@@ -86,21 +103,18 @@ function handleMove(event) {
     scores[winner.player] += 1;
     updateStreak(winner.player);
     statusElement.textContent = `Player ${winner.player} wins`;
-    turnLabelElement.textContent = "Round complete";
   } else if (boardState.every(Boolean)) {
     gameOver = true;
     scores.draw += 1;
     streak.player = "";
     streak.count = 0;
     statusElement.textContent = "Draw game";
-    turnLabelElement.textContent = "Board locked";
   } else {
     currentPlayer = currentPlayer === "X" ? "O" : "X";
     statusElement.textContent = `Player ${currentPlayer}'s turn`;
-    turnLabelElement.textContent = `${boardState.filter(Boolean).length} moves played`;
   }
 
-  createBoard();
+  updateBoard();
 }
 
 function getWinner() {
@@ -147,10 +161,6 @@ function updateHud() {
   if (streakLabelElement) {
     streakLabelElement.textContent = streak.count > 1 ? `${streak.player} x${streak.count}` : "None";
   }
-
-  if (turnLabelElement && !gameOver && movesPlayed === 0) {
-    turnLabelElement.textContent = "Opening move";
-  }
 }
 
 function updateStreak(player) {
@@ -171,12 +181,7 @@ function resetGame() {
   lastMoveIndex = null;
   roundNumber += 1;
   statusElement.textContent = "Player X's turn";
-
-  if (turnLabelElement) {
-    turnLabelElement.textContent = "Opening move";
-  }
-
-  createBoard();
+  updateBoard();
 }
 
 resetButton.addEventListener("click", resetGame);
