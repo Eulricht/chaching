@@ -38,7 +38,7 @@ let streak = {
   count: 0
 };
 let introAnimationTimer = null;
-const INTRO_MAX_DELAY = 620;
+const INTRO_MAX_DELAY = 99999; // Maximum delay for intro animation in milliseconds
 
 function createBoard() {
   boardElement.innerHTML = "";
