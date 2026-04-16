@@ -6,8 +6,8 @@
   --panel-strong: #18223d;
   --cell: #101828;
   --cell-hover: #17223b;
-  --border: rgba(148, 163, 184, 0.28);
-  --border-strong: rgba(148, 163, 184, 0.42);
+  --border: rgba(148, 163, 184, 0.2);
+  --border-strong: rgba(148, 163, 184, 0.3);
   --text: #e5e7eb;
   --muted: #93a0b8;
   --accent: #7dd3fc;
@@ -94,7 +94,7 @@ h1 {
 .scoreboard,
 .board {
   border: 1px solid var(--border-strong);
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.04);
 }
 
 .game.is-intro .status-panel,
@@ -195,7 +195,7 @@ h1 {
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.025);
   color: var(--muted);
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.04);
   transition: border-color 160ms ease, background 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
@@ -237,7 +237,7 @@ h1 {
   border: 1px solid var(--border-strong);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.02);
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.04);
   animation: float-idle 6s ease-in-out infinite;
 }
 
@@ -289,7 +289,7 @@ h1 {
   font-weight: 800;
   letter-spacing: -0.04em;
   cursor: pointer;
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.04);
   transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
 }
 
@@ -377,11 +377,11 @@ h1 {
 }
 
 .mark.is-drawing.mark-x line {
-  animation: draw-x-stroke 0.92s linear forwards;
+  animation: draw-x-stroke 0.16s linear forwards;
 }
 
 .mark.is-drawing.mark-o circle {
-  animation: draw-o-stroke 1.04s linear forwards;
+  animation: draw-o-stroke 0.2s linear forwards;
 }
 
 .mark-x line:last-child {
@@ -449,7 +449,7 @@ h1 {
 
   to {
     border-color: var(--border-strong);
-    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.04);
   }
 }
 
@@ -461,7 +461,7 @@ h1 {
 
   to {
     border-color: var(--border);
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(148, 163, 184, 0.08);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(148, 163, 184, 0.04);
   }
 }
 
@@ -473,7 +473,7 @@ h1 {
 
   to {
     border-color: var(--border-strong);
-    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.04);
   }
 }
 

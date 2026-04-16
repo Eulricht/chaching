@@ -38,7 +38,7 @@ let streak = {
   count: 0
 };
 let introAnimationTimer = null;
-const INTRO_MAX_DELAY = 900;
+const INTRO_MAX_DELAY = 620;
 
 function createBoard() {
   boardElement.innerHTML = "";
@@ -243,7 +243,7 @@ function triggerIntroAnimation() {
     gameElement.classList.remove("is-intro");
     boardElement.classList.remove("is-intro");
     introAnimationTimer = null;
-  }, 1900);
+  }, 1200);
 }
 
 function applyIntroDelays() {
