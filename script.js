@@ -38,7 +38,7 @@ let streak = {
   count: 0
 };
 let introAnimationTimer = null;
-const INTRO_MAX_DELAY = 99999; // Maximum delay for intro animation in milliseconds
+const INTRO_MAX_DELAY = 620;
 
 function createBoard() {
   boardElement.innerHTML = "";
@@ -117,7 +117,7 @@ function createMark(value) {
 
   mark.innerHTML = [
     '<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">',
-    '<circle cx="50" cy="50" r="32" pathLength="100"></circle>',
+    '<path d="M 50 18 A 32 32 0 1 1 49.99 18" pathLength="100"></path>',
     "</svg>"
   ].join("");
   return mark;
